@@ -28,12 +28,12 @@ const signup = async (req, res) => {
         await newUser.save();
 
         // Generate token
-        const token = generateToken(newUser._id);
+        // const token = generateToken(newUser._id);
 
         // Respond with success
         res.status(201).json({
             message: 'User registered successfully',
-            token,
+            // token,
         });
 
     } catch (error) {
@@ -55,9 +55,11 @@ const login = async(req,res)=>{
     if(!isPasswordValid){
         return res.status(400).json({success:false,message:'Invalid credentials'})
     }
+
     const token = jwt.sign({userId:user._id,role:user.role},process.env.JWT_SECRET,{
         expiresIn:process.env.JWT_EXPIRATION
     })
+    console.log(token,token)
     res.status(200).json({sucess:true,token})
   }catch(error){
     res.status(500).json({sucess:false,message:error})
