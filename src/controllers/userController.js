@@ -42,7 +42,7 @@ const deleteUser = async(req,res)=>{
 // Add a new user
 const addUser = async (req, res) => {
     const { email, password, role } = req.body;
-
+    
     // Validate input
     if (!email || !password || !role) {
         return res.status(400).json({ error: 'Invalid request payload' });

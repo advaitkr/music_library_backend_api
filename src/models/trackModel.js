@@ -4,8 +4,16 @@ const trackSchema = new mongoose.Schema({
   name:{type:String,required:true},
   duration:{type:Boolean,default:false},
   hidden:{type:Boolean,default:false},
-  album_id:{type:String,required:true},
-  artist_id:{type:String,required:true},
+  album_id: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Album', 
+    required: true 
+  },
+  artist_id: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Artist', 
+    required: true 
+  },
 })
 
 module.exports = mongoose.model("Track",trackSchema)
